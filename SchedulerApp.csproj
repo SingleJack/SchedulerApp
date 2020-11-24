@@ -175,6 +175,7 @@
     <Content Include="Views\Login\LoginSuccess.cshtml" />
     <Content Include="Views\Login\LoginFailure.cshtml" />
     <Content Include="Views\Admin\AdminForm.cshtml" />
+    <Content Include="Views\Admin\CreateForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

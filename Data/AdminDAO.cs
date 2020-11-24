@@ -98,23 +98,12 @@ namespace SchedulerApp.Data
         }
 
         // Create a new record in the database
-        public int CreateOrUpdate(AdminModel adminModel)
+        public int Create (AdminModel adminModel)
         {
             //access the database
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string sqlQuery = "";
-
-                if (adminModel.Id <= 0)
-                {
-                    //If adminModel.id <= 1 then create new record in database
-                    sqlQuery = "insert into dbo.ServiceDetail Values(@FirstName, @LastName, @Date, @Duties, @Service, @UserId)";
-                }
-                else
-                {
-                    //If adminModel.id > 1 then update record in database
-                    sqlQuery = "update dbo.ServiceDetail set FirstName = @FirstName, LastName = @LastName, Date = @Date, Duties = @Duties, Service = @Service, UserID = @UserID where Id = @Id where the Id = @Id";
-                }
+                string sqlQuery = "insert into dbo.ServiceDetail Values(@FirstName, @LastName, @Date, @Duties, @Service, @UserId)";                
 
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
 
@@ -131,6 +120,34 @@ namespace SchedulerApp.Data
 
                 int newID = command.ExecuteNonQuery();
                //command.ExecuteNonQuery();
+
+                return newID;
+            }
+        }
+
+        // Edit a record in the database
+        public int Update(AdminModel adminModel)
+        {
+            //access the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sqlQuery = "update dbo.ServiceDetail set FirstName = @FirstName, LastName = @LastName, Date = @Date, Duties = @Duties, Service = @Service, UserID = @UserID where Id = @Id";              
+
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+                //associate @fields with field parameters 
+                command.Parameters.Add("@Id", System.Data.SqlDbType.Int, 10).Value = adminModel.Id;
+                command.Parameters.Add("@FirstName", System.Data.SqlDbType.VarChar, 1000).Value = adminModel.FirstName;
+                command.Parameters.Add("@LastName", System.Data.SqlDbType.VarChar, 1000).Value = adminModel.LastName;
+                command.Parameters.Add("@Date", System.Data.SqlDbType.Date).Value = adminModel.Date;
+                command.Parameters.Add("@Duties", System.Data.SqlDbType.VarChar, 1000).Value = adminModel.Duties;
+                command.Parameters.Add("@Service", System.Data.SqlDbType.Char, 1).Value = adminModel.Service;
+                command.Parameters.Add("@UserId", System.Data.SqlDbType.VarChar, 1000).Value = adminModel.UserID;
+
+                connection.Open();
+
+                int newID = command.ExecuteNonQuery();
+                //command.ExecuteNonQuery();
 
                 return newID;
             }

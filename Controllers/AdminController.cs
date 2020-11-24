@@ -31,7 +31,7 @@ namespace SchedulerApp.Controllers
         //Display form
         public ActionResult Create()
         {
-            return View("AdminForm");
+            return View("CreateForm");
         }
 
         //Call the CreateOrUpdate function then display details about the new entry
@@ -39,9 +39,9 @@ namespace SchedulerApp.Controllers
         {
             //save to database
             AdminDAO adminDAO = new AdminDAO();
-            adminDAO.CreateOrUpdate(adminModel);
+            adminDAO.Create(adminModel);
 
-            return View("Details", adminModel.Id);
+            return View("Details", adminModel);
         }
 
         public ActionResult Edit(int id)
@@ -49,6 +49,16 @@ namespace SchedulerApp.Controllers
             AdminDAO adminDAO = new AdminDAO();
             AdminModel user = adminDAO.FetchOne(id);
             return View("AdminForm", user);
+        }
+
+        //Call the CreateOrUpdate function then display details about the new entry
+        public ActionResult ProcessEdit(AdminModel adminModel)
+        {
+            //save to database
+            AdminDAO adminDAO = new AdminDAO();
+            adminDAO.Update(adminModel);
+
+            return View("Details", adminModel);
         }
 
         public ActionResult Delete(int id)
