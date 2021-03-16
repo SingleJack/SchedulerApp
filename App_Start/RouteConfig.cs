@@ -22,7 +22,13 @@ namespace SchedulerApp
             routes.MapRoute(
                 name: "Login",
                 url: "{Login}",
-                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Login", action = "Index"}
+            );
+
+            routes.MapRoute(
+                name: "Calendar",
+                url: "{Calendar}",
+                defaults: new { controller = "Calendar", action = "Calendar"}
             );
 
             routes.MapRoute(

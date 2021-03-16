@@ -44,12 +44,12 @@ namespace SchedulerApp.Controllers
             return View("Details", adminModel);
         }
 
-        public ActionResult Edit(int id)
-        {
-            AdminDAO adminDAO = new AdminDAO();
-            AdminModel user = adminDAO.FetchOne(id);
-            return View("AdminForm", user);
-        }
+        //public ActionResult Edit(int id)
+        //{
+        //    AdminDAO adminDAO = new AdminDAO();
+        //    AdminModel user = adminDAO.FetchOne(id);
+        //    return View("AdminForm", user);
+        //}
 
         //Call the CreateOrUpdate function then display details about the new entry
         public ActionResult ProcessEdit(AdminModel adminModel)
