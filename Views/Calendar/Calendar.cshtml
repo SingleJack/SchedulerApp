@@ -1,0 +1,95 @@
+﻿@model SchedulerApp.Models.UserModel
+
+@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //find the next sunday if today is not a Sunday
+    List<DateTime> Sundays = new List<DateTime>();
+    DateTime today = new DateTime();
+    today = DateTime.Now;
+    DateTime new_sunday = new DateTime();
+
+    if ((int)today.DayOfWeek == 0)  //if today is Sunday at to list
+    {
+        Sundays.Add(today);
+    }
+    else    //find first Sunday and add to list
+    {
+        for (int i = 1; i <= 7; i++)
+        {
+            new_sunday = today.AddDays(i);
+            if (new_sunday.DayOfWeek.ToString() == "Sunday")
+            {
+                Sundays.Add(new_sunday);
+                break;
+            }
+        }
+    }
+    //first Sunday if found, find a years worth of Sundays and add to list
+    int ii = 0;
+    for (int i = (int)new_sunday.DayOfYear; i < (int)new_sunday.DayOfYear + 365; i = i + 7)
+    {
+        new_sunday = new_sunday.AddDays(7);
+        Sundays.Add(new_sunday);
+        ii++;
+    }
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="">@today.ToString("yyyy")</h2>
+        </div>
+    </div>
+    <div class="row">
+        @{
+            DateTime lastday = new DateTime();
+            lastday = today;
+            foreach (DateTime day in Sundays)
+            {
+                if (day.ToString("yyyy") != lastday.ToString("yyyy"))   //check if year has changed
+                {
+                    //display new year in a header
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h2>@day.ToString("yyyy")</h2>
+                        </div>
+                    </div>
+                }
+
+                if (day.ToString("MM") != lastday.ToString("MM"))    //check to see if a new month has been encountered
+                {
+                    //start a new row in the grid
+                    //Yes - put name of month as header in the first column
+                    //enter day(number) of month as header in next column
+                    //Loop through positions
+                    if (true)     //if the position is taken - check database
+                    {
+                        //disable radio button
+                        //replace position name with assigned user's name
+                    }
+                    else
+                    {
+                        //enter radio button with name for position
+                    }
+                }
+                else   //go to next column in grid
+                {
+                    if (true)     //if the position is taken - check database
+                    {
+                        //disable radio button
+                        //replace position name with assigned user's name
+                    }
+                    else
+                    {
+                        //enter radio button with name for position
+                    }
+                }
+                lastday = day;
+            }//end of foreach
+        }
+    </div>
+</div>
+
