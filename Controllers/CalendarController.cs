@@ -13,5 +13,11 @@ namespace SchedulerApp.Controllers
         {
             return View();
         }
+
+        //Get: Calendar1
+        public ActionResult Calendar1()
+        {
+            return View();
+        }
     }
 }

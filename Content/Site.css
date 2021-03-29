@@ -22,3 +22,37 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.day_container{
+    display:flex;    
+}
+
+.day_container div {
+    justify-content: space-between;
+}
+
+.row {
+    background: white;
+}
+
+.row > div {
+    max-width: 150px;
+    font-size: x-small;
+}
+
+.col-md-3{
+    display:grid;
+}
+
+.button_style{
+    padding:0px;
+    margin:0px;
+    background-color:rgba(243, 198, 198, 0.51);
+    color:black;    
+}
+
+.border{
+    border:2px solid black;
+}
+
+

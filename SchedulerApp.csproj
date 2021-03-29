@@ -178,6 +178,9 @@
     <Content Include="Views\Admin\AdminForm.cshtml" />
     <Content Include="Views\Admin\CreateForm.cshtml" />
     <Content Include="Views\Calendar\Calendar.cshtml" />
+    <Content Include="Views\Calendar\Calendar1.cshtml">
+      <BrowseToURL>~/Calendar/Calendar1</BrowseToURL>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
